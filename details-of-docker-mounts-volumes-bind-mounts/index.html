@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="What is the meaning of Mount?If you have used Docker before, which I’m sure you have, you must have realized that data written to the container file system is completely lost when your container has b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding of Docker Mounts?">
+<meta property="og:url" content="https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/index.html">
+<meta property="og:site_name" content="Cyber Security with R&amp;D perspective">
+<meta property="og:description" content="What is the meaning of Mount?If you have used Docker before, which I’m sure you have, you must have realized that data written to the container file system is completely lost when your container has b">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/bind-mount.webp">
+<meta property="article:published_time" content="2025-02-26T12:39:12.000Z">
+<meta property="article:modified_time" content="2025-02-26T14:27:45.413Z">
+<meta property="article:author" content="11E48B5">
+<meta property="article:tag" content="devops">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="container">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/bind-mount.webp">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Understanding of Docker Mounts?</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/introduction-to-containers/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&text=Understanding of Docker Mounts?"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&is_video=false&description=Understanding of Docker Mounts?"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Understanding of Docker Mounts?&body=Check out this article: https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&name=Understanding of Docker Mounts?&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&t=Understanding of Docker Mounts?"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-the-meaning-of-Mount"><span class="toc-number">1.</span> <span class="toc-text">What is the meaning of Mount?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-bind-mount"><span class="toc-number">1.1.</span> <span class="toc-text">What is bind mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-volume-mount"><span class="toc-number">1.2.</span> <span class="toc-text">What is volume mount?</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Understanding of Docker Mounts?
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">11E48B5</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-02-26T12:39:12.000Z" class="dt-published" itemprop="datePublished">2025-02-26</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/container/" rel="tag">container</a>, <a class="p-category" href="/tags/devops/" rel="tag">devops</a>, <a class="p-category" href="/tags/docker/" rel="tag">docker</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="What-is-the-meaning-of-Mount"><a href="#What-is-the-meaning-of-Mount" class="headerlink" title="What is the meaning of Mount?"></a>What is the meaning of Mount?</h1><p>If you have used Docker before, which I’m sure you have, you must have realized that data written to the container file system is completely lost when your container has been accidentally or intentionally restarted. This presents a significant problem since we, as engineers, bear the heavy responsibility of ensuring <strong>persistent</strong> application data. To address this issue, Docker has provided several ways called Mounts to overcome this challenge and keep data on a more permanent basis.</p>
+<p>As of today, there are three types of <strong>mounts</strong> in Docker, each designed for specific reasons and use cases. These types of mounts are:</p>
+<ul>
+<li>Bind mounts</li>
+<li>Volume mounts</li>
+<li>Tmpfs mounts</li>
+</ul>
+<h2 id="What-is-bind-mount"><a href="#What-is-bind-mount" class="headerlink" title="What is bind mount?"></a>What is bind mount?</h2><p>By default host directories are not available in the container file system , but with bind mounts we can access the host filesystem. bind mount is a way to connect or link a directory or file from your computer’s file system to a specific location inside a Docker container.</p>
+<p>You can easily update the files on your computer, and the changes will be instantly reflected inside the container without the need to rebuild or modify the container itself.</p>
+<p>Bind mounts tightly couple the container to the host machine’s filesystem, which means that processes running in a container can modify the host filesystem. This includes creating, modifying, or deleting system files or directories. Therefore, it is crucial to be cautious <strong>with permissions</strong> and ensure proper access controls to prevent any <strong>security risks</strong> or conflicts. This mounting type is not controlled from docker.</p>
+<img src="/details-of-docker-mounts-volumes-bind-mounts/bind-mount.webp" class="">
+
+<p>In docker, you can use Bind mount in CLI like this;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -v /host/path:/path/in/container image:tag</span><br></pre></td></tr></table></figure>
+
+<p>In Docker Compose;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">services: </span><br><span class="line">    myservice: </span><br><span class="line">    image: image:tag </span><br><span class="line">    volumes: - /host/path:/path/in/container </span><br></pre></td></tr></table></figure>
+
+<h2 id="What-is-volume-mount"><a href="#What-is-volume-mount" class="headerlink" title="What is volume mount?"></a>What is volume mount?</h2><p>Volume mounts in Docker provide a way to persist and share data between containers and the host system. They allow containers to access and store data beyond their lifecycle, ensuring that data is not lost when a container stops or is removed.</p>
+<p>Volume mounts are like bind mounts but they are fully managed by docker itself . Volumes are stored in the Linux VM rather than the host, which means that the reads and writes have much lower latency and higher throughput.</p>
+<p>volume mounts are a way to manage and store data separately from the containers themselves. They provide a means to <strong>store</strong> and <strong>share</strong> files and directories that can be persist even if containers are <strong>deleted</strong> or <strong>recreated.</strong> If we want to look at benefits of volume mounts;</p>
+<ul>
+<li>Stored in &#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;</li>
+<li>Managed entirely by Docker</li>
+<li>Ideal for persistent and shareable data</li>
+</ul>
+<p>Using example in CLI;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker volume create my_volume</span><br><span class="line">docker run -d -v my_volume:/data --name my_container ubuntu</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-the-meaning-of-Mount"><span class="toc-number">1.</span> <span class="toc-text">What is the meaning of Mount?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-bind-mount"><span class="toc-number">1.1.</span> <span class="toc-text">What is bind mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-volume-mount"><span class="toc-number">1.2.</span> <span class="toc-text">What is volume mount?</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&text=Understanding of Docker Mounts?"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&is_video=false&description=Understanding of Docker Mounts?"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Understanding of Docker Mounts?&body=Check out this article: https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&name=Understanding of Docker Mounts?&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&t=Understanding of Docker Mounts?"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    11E48B5
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
