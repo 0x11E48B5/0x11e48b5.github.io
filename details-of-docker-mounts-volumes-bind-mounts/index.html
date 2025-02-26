@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/bind-mount.webp">
 <meta property="article:published_time" content="2025-02-26T12:39:12.000Z">
-<meta property="article:modified_time" content="2025-02-26T14:27:45.413Z">
+<meta property="article:modified_time" content="2025-02-26T14:29:24.534Z">
 <meta property="article:author" content="11E48B5">
 <meta property="article:tag" content="devops">
 <meta property="article:tag" content="docker">
@@ -172,6 +172,11 @@
 <h2 id="What-is-bind-mount"><a href="#What-is-bind-mount" class="headerlink" title="What is bind mount?"></a>What is bind mount?</h2><p>By default host directories are not available in the container file system , but with bind mounts we can access the host filesystem. bind mount is a way to connect or link a directory or file from your computer’s file system to a specific location inside a Docker container.</p>
 <p>You can easily update the files on your computer, and the changes will be instantly reflected inside the container without the need to rebuild or modify the container itself.</p>
 <p>Bind mounts tightly couple the container to the host machine’s filesystem, which means that processes running in a container can modify the host filesystem. This includes creating, modifying, or deleting system files or directories. Therefore, it is crucial to be cautious <strong>with permissions</strong> and ensure proper access controls to prevent any <strong>security risks</strong> or conflicts. This mounting type is not controlled from docker.</p>
+<ul>
+<li>Maps a specific directory on the host to a container</li>
+<li>Allows direct access to host files</li>
+<li>Less portable than volumes (depends on host filesystem)</li>
+</ul>
 <img src="/details-of-docker-mounts-volumes-bind-mounts/bind-mount.webp" class="">
 
 <p>In docker, you can use Bind mount in CLI like this;</p>
