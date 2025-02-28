@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="What is the meaning of Mount?If you have used Docker before, which I’m sure you have, you must have realized that data written to the container file system is completely lost when your container has b">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Understanding of Docker Mounts?">
+<meta property="og:title" content="Understanding Docker Mounts?">
 <meta property="og:url" content="https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/index.html">
 <meta property="og:site_name" content="Cyber Security with R&amp;D perspective">
 <meta property="og:description" content="What is the meaning of Mount?If you have used Docker before, which I’m sure you have, you must have realized that data written to the container file system is completely lost when your container has b">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/bind-mount.webp">
 <meta property="article:published_time" content="2025-02-26T12:39:12.000Z">
-<meta property="article:modified_time" content="2025-02-26T14:29:24.534Z">
+<meta property="article:modified_time" content="2025-02-28T07:19:04.330Z">
 <meta property="article:author" content="11E48B5">
 <meta property="article:tag" content="devops">
 <meta property="article:tag" content="docker">
@@ -41,7 +41,7 @@
       
     
     <!-- title -->
-    <title>Understanding of Docker Mounts?</title>
+    <title>Understanding Docker Mounts?</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -101,23 +101,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&text=Understanding of Docker Mounts?"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&is_video=false&description=Understanding of Docker Mounts?"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Understanding of Docker Mounts?&body=Check out this article: https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&name=Understanding of Docker Mounts?&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&t=Understanding of Docker Mounts?"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&text=Understanding Docker Mounts?"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding Docker Mounts?"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&is_video=false&description=Understanding Docker Mounts?"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Understanding Docker Mounts?&body=Check out this article: https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding Docker Mounts?"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding Docker Mounts?"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding Docker Mounts?"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding Docker Mounts?"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&name=Understanding Docker Mounts?&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&t=Understanding Docker Mounts?"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-the-meaning-of-Mount"><span class="toc-number">1.</span> <span class="toc-text">What is the meaning of Mount?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-bind-mount"><span class="toc-number">1.1.</span> <span class="toc-text">What is bind mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-volume-mount"><span class="toc-number">1.2.</span> <span class="toc-text">What is volume mount?</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-the-meaning-of-Mount"><span class="toc-number">1.</span> <span class="toc-text">What is the meaning of Mount?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-bind-mount"><span class="toc-number">1.1.</span> <span class="toc-text">What is bind mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-volume-mount"><span class="toc-number">1.2.</span> <span class="toc-text">What is volume mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ephemeral-container-filesystem-tmpfs"><span class="toc-number">1.3.</span> <span class="toc-text">Ephemeral container filesystem - tmpfs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Useful-volumes-commands-to-manage"><span class="toc-number">1.4.</span> <span class="toc-text">Useful volumes commands to manage</span></a></li></ol></li></ol>
       </div>
     
   </span>
@@ -130,7 +130,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Understanding of Docker Mounts?
+        Understanding Docker Mounts?
     </h1>
 
 
@@ -183,7 +183,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -v /host/path:/path/in/container image:tag</span><br></pre></td></tr></table></figure>
 
 <p>In Docker Compose;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">services: </span><br><span class="line">    myservice: </span><br><span class="line">    image: image:tag </span><br><span class="line">    volumes: - /host/path:/path/in/container </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">services: </span><br><span class="line">    app: </span><br><span class="line">      image: image:tag </span><br><span class="line">      volumes: </span><br><span class="line">        - /host/path:/path/in/container </span><br></pre></td></tr></table></figure>
 
 <h2 id="What-is-volume-mount"><a href="#What-is-volume-mount" class="headerlink" title="What is volume mount?"></a>What is volume mount?</h2><p>Volume mounts in Docker provide a way to persist and share data between containers and the host system. They allow containers to access and store data beyond their lifecycle, ensuring that data is not lost when a container stops or is removed.</p>
 <p>Volume mounts are like bind mounts but they are fully managed by docker itself . Volumes are stored in the Linux VM rather than the host, which means that the reads and writes have much lower latency and higher throughput.</p>
@@ -195,6 +195,23 @@
 </ul>
 <p>Using example in CLI;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker volume create my_volume</span><br><span class="line">docker run -d -v my_volume:/data --name my_container ubuntu</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ephemeral-container-filesystem-tmpfs"><a href="#Ephemeral-container-filesystem-tmpfs" class="headerlink" title="Ephemeral container filesystem - tmpfs"></a>Ephemeral container filesystem - tmpfs</h2><p>In the context of Docker, tmpfs mounts allow you to mount a temporary file system into a container’s filesystem, which <code>resides in memory</code> rather than on disk. This can be useful for scenarios where you need a filesystem that is fast and volatile, such as storing temporary files or caches.</p>
+<p>Using example in CLI;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --tmpfs /path/in/container image:tag</span><br></pre></td></tr></table></figure>
+
+<p>another example with settings of size and mode</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --tmpfs /mytmpfs:size=100m,mode=1777 ubuntu</span><br></pre></td></tr></table></figure>
+<p>If you’re using Docker compose for deploying containers, you can use tmpfs like this;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;3.9&quot;</span><br><span class="line">services:</span><br><span class="line">  app:</span><br><span class="line">    image: ubuntu</span><br><span class="line">    tmpfs:</span><br><span class="line">      - /mytmpfs:size=200m</span><br></pre></td></tr></table></figure>
+
+<h2 id="Useful-volumes-commands-to-manage"><a href="#Useful-volumes-commands-to-manage" class="headerlink" title="Useful volumes commands to manage"></a>Useful volumes commands to manage</h2><ul>
+<li>To list all volumes<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume ls</span><br></pre></td></tr></table></figure></li>
+<li>To inspect details of specific volume use inspect<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume inspect volume_name</span><br></pre></td></tr></table></figure></li>
+<li>To remove volume<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume rm volume_name</span><br></pre></td></tr></table></figure></li>
+<li>To clean up unused volumes<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume prune</span><br></pre></td></tr></table></figure></li>
+</ul>
+
   </div>
 </article>
 
@@ -221,23 +238,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-the-meaning-of-Mount"><span class="toc-number">1.</span> <span class="toc-text">What is the meaning of Mount?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-bind-mount"><span class="toc-number">1.1.</span> <span class="toc-text">What is bind mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-volume-mount"><span class="toc-number">1.2.</span> <span class="toc-text">What is volume mount?</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-the-meaning-of-Mount"><span class="toc-number">1.</span> <span class="toc-text">What is the meaning of Mount?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-bind-mount"><span class="toc-number">1.1.</span> <span class="toc-text">What is bind mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-volume-mount"><span class="toc-number">1.2.</span> <span class="toc-text">What is volume mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ephemeral-container-filesystem-tmpfs"><span class="toc-number">1.3.</span> <span class="toc-text">Ephemeral container filesystem - tmpfs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Useful-volumes-commands-to-manage"><span class="toc-number">1.4.</span> <span class="toc-text">Useful volumes commands to manage</span></a></li></ol></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&text=Understanding of Docker Mounts?"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&is_video=false&description=Understanding of Docker Mounts?"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Understanding of Docker Mounts?&body=Check out this article: https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding of Docker Mounts?"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&name=Understanding of Docker Mounts?&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&t=Understanding of Docker Mounts?"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&text=Understanding Docker Mounts?"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding Docker Mounts?"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&is_video=false&description=Understanding Docker Mounts?"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Understanding Docker Mounts?&body=Check out this article: https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding Docker Mounts?"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding Docker Mounts?"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding Docker Mounts?"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&title=Understanding Docker Mounts?"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&name=Understanding Docker Mounts?&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/&t=Understanding Docker Mounts?"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
