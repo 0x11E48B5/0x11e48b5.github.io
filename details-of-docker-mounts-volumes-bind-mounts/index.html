@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://0x11e48b5.github.io/details-of-docker-mounts-volumes-bind-mounts/bind-mount.webp">
 <meta property="article:published_time" content="2025-02-26T12:39:12.000Z">
-<meta property="article:modified_time" content="2025-02-28T07:19:04.330Z">
+<meta property="article:modified_time" content="2025-02-28T07:41:06.549Z">
 <meta property="article:author" content="11E48B5">
 <meta property="article:tag" content="devops">
 <meta property="article:tag" content="docker">
@@ -117,7 +117,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-the-meaning-of-Mount"><span class="toc-number">1.</span> <span class="toc-text">What is the meaning of Mount?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-bind-mount"><span class="toc-number">1.1.</span> <span class="toc-text">What is bind mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-volume-mount"><span class="toc-number">1.2.</span> <span class="toc-text">What is volume mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ephemeral-container-filesystem-tmpfs"><span class="toc-number">1.3.</span> <span class="toc-text">Ephemeral container filesystem - tmpfs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Useful-volumes-commands-to-manage"><span class="toc-number">1.4.</span> <span class="toc-text">Useful volumes commands to manage</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-the-meaning-of-Mount"><span class="toc-number">1.</span> <span class="toc-text">What is the meaning of Mount?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-bind-mount"><span class="toc-number">1.1.</span> <span class="toc-text">What is bind mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-volume-mount"><span class="toc-number">1.2.</span> <span class="toc-text">What is volume mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ephemeral-container-filesystem-tmpfs"><span class="toc-number">1.3.</span> <span class="toc-text">Ephemeral container filesystem - tmpfs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Useful-volumes-commands-to-manage"><span class="toc-number">1.4.</span> <span class="toc-text">Useful volumes commands to manage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Comparing-tmpfs-vs-Volumes-vs-Bind-Mounts"><span class="toc-number">1.5.</span> <span class="toc-text">Comparing tmpfs vs Volumes vs Bind Mounts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion-Docker-Volumes-and-Data-Persistence"><span class="toc-number">1.6.</span> <span class="toc-text">Conclusion: Docker Volumes and Data Persistence</span></a></li></ol></li></ol>
       </div>
     
   </span>
@@ -211,6 +211,42 @@
 <li>To remove volume<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume rm volume_name</span><br></pre></td></tr></table></figure></li>
 <li>To clean up unused volumes<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume prune</span><br></pre></td></tr></table></figure></li>
 </ul>
+<h2 id="Comparing-tmpfs-vs-Volumes-vs-Bind-Mounts"><a href="#Comparing-tmpfs-vs-Volumes-vs-Bind-Mounts" class="headerlink" title="Comparing tmpfs vs Volumes vs Bind Mounts"></a>Comparing tmpfs vs Volumes vs Bind Mounts</h2><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>tmpfs Mount</th>
+<th>Volume</th>
+<th>Bind Mount</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Persists after container restart?</strong></td>
+<td>❌ No</td>
+<td>✅ Yes</td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td><strong>Stored in RAM?</strong></td>
+<td>✅ Yes</td>
+<td>❌ No</td>
+<td>❌ No</td>
+</tr>
+<tr>
+<td><strong>Performance</strong></td>
+<td>⚡ Fastest</td>
+<td>🚀 Fast</td>
+<td>🐢 Depends on disk</td>
+</tr>
+<tr>
+<td><strong>Use Case</strong></td>
+<td>Temporary, sensitive, or high-speed data</td>
+<td>Persistent app data</td>
+<td>Share host files with a container</td>
+</tr>
+</tbody></table>
+<h2 id="Conclusion-Docker-Volumes-and-Data-Persistence"><a href="#Conclusion-Docker-Volumes-and-Data-Persistence" class="headerlink" title="Conclusion: Docker Volumes and Data Persistence"></a>Conclusion: Docker Volumes and Data Persistence</h2><p><strong>Docker volumes</strong> are the recommended approach for <code>data persistence</code> in containers. Unlike bind mounts, which rely on the host filesystem structure, volumes are fully managed by Docker, making them more portable, secure, and efficient for storing application data.</p>
+<p>Since container filesystems are ephemeral, using volumes ensures that critical data—such as databases, logs, and configuration files—remains intact even if the container is stopped or removed. For optimal performance and security, choose volumes for long-term storage, bind mounts for host-container file sharing, and tmpfs mounts for temporary, high-speed data storage in RAM.</p>
 
   </div>
 </article>
@@ -238,7 +274,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-the-meaning-of-Mount"><span class="toc-number">1.</span> <span class="toc-text">What is the meaning of Mount?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-bind-mount"><span class="toc-number">1.1.</span> <span class="toc-text">What is bind mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-volume-mount"><span class="toc-number">1.2.</span> <span class="toc-text">What is volume mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ephemeral-container-filesystem-tmpfs"><span class="toc-number">1.3.</span> <span class="toc-text">Ephemeral container filesystem - tmpfs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Useful-volumes-commands-to-manage"><span class="toc-number">1.4.</span> <span class="toc-text">Useful volumes commands to manage</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-the-meaning-of-Mount"><span class="toc-number">1.</span> <span class="toc-text">What is the meaning of Mount?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-bind-mount"><span class="toc-number">1.1.</span> <span class="toc-text">What is bind mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-volume-mount"><span class="toc-number">1.2.</span> <span class="toc-text">What is volume mount?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ephemeral-container-filesystem-tmpfs"><span class="toc-number">1.3.</span> <span class="toc-text">Ephemeral container filesystem - tmpfs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Useful-volumes-commands-to-manage"><span class="toc-number">1.4.</span> <span class="toc-text">Useful volumes commands to manage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Comparing-tmpfs-vs-Volumes-vs-Bind-Mounts"><span class="toc-number">1.5.</span> <span class="toc-text">Comparing tmpfs vs Volumes vs Bind Mounts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion-Docker-Volumes-and-Data-Persistence"><span class="toc-number">1.6.</span> <span class="toc-text">Conclusion: Docker Volumes and Data Persistence</span></a></li></ol></li></ol>
       </div>
     
 
