@@ -14,7 +14,7 @@
 <meta property="og:description" content="What is 3rd party docker images?Third-party Docker container images are pre-built, ready-to-use Docker images created by organizations, communities, or individuals outside of Docker Inc. These images">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-01T12:00:00.000Z">
-<meta property="article:modified_time" content="2025-02-28T12:36:15.676Z">
+<meta property="article:modified_time" content="2025-03-12T09:01:14.589Z">
 <meta property="article:author" content="11E48B5">
 <meta property="article:tag" content="devops">
 <meta property="article:tag" content="docker">
@@ -115,7 +115,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-3rd-party-docker-images"><span class="toc-number">1.</span> <span class="toc-text">What is 3rd party docker images?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Benefits-of-using-third-party-docker-images"><span class="toc-number">1.1.</span> <span class="toc-text">Benefits of using third party docker images</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-3rd-party-docker-images"><span class="toc-number">1.</span> <span class="toc-text">What is 3rd party docker images?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Benefits-of-using-third-party-docker-images"><span class="toc-number">1.1.</span> <span class="toc-text">Benefits of using third party docker images</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9B%A0-General-Debugging-CLI-Tools-Also-some-base-images-for-containers"><span class="toc-number">1.2.</span> <span class="toc-text">🛠 General Debugging &amp; CLI Tools (Also some base images for containers)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B9-Usage-Examples"><span class="toc-number">1.2.1.</span> <span class="toc-text">🔹 Usage Examples</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%96%A5%EF%B8%8F-Debian-Ubuntu-Full-Linux-Shell"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">🖥️ Debian &#x2F; Ubuntu - Full Linux Shell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%93%A6-Alpine-Lightweight-Linux-Shell"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">📦 Alpine - Lightweight Linux Shell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%94%84-Standalone-Bash-Shell"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">🔄 Standalone Bash Shell</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A5-Security-Penetration-Testing"><span class="toc-number">1.3.</span> <span class="toc-text">🔥 Security &amp; Penetration Testing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B9-Usage-Examples-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">🔹 Usage Examples</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%95%B5%EF%B8%8F-Kali-Linux-Security-Tools"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">🕵️ Kali Linux Security Tools</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%92%80-Metasploit-Exploit-Framework"><span class="toc-number">1.3.2.</span> <span class="toc-text">💀 Metasploit - Exploit Framework</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8C%90-Network-Debugging-Testing"><span class="toc-number">1.4.</span> <span class="toc-text">🌐 Network Debugging &amp; Testing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B9-Usage-Examples-2"><span class="toc-number">1.4.1.</span> <span class="toc-text">🔹 Usage Examples</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9B%A0-Netshoot-Advanced-Network-Debugging"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">🛠 Netshoot - Advanced Network Debugging</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%93%A1-BusyBox-Lightweight-Linux-Toolkit"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">📡 BusyBox - Lightweight Linux Toolkit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Network-tools"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">Network-tools</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%94%8D-DNS-Utilities"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">🔍 DNS Utilities</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%97%84%EF%B8%8F-Databases-Storage"><span class="toc-number">1.5.</span> <span class="toc-text">🗄️ Databases &amp; Storage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B9-Usage-Examples-3"><span class="toc-number">1.5.1.</span> <span class="toc-text">🔹 Usage Examples</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9B%A0-Running-MySQL"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">🛠 Running MySQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9B%A0-Running-PostgreSQL"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">🛠 Running PostgreSQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%8F%97-Running-Redis"><span class="toc-number">1.5.1.3.</span> <span class="toc-text">🏗 Running Redis</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-Third-Party-Container-Images-Matter-How-They%E2%80%99re-Used-in-the-Real-World"><span class="toc-number">1.6.</span> <span class="toc-text">Why Third-Party Container Images Matter &amp; How They’re Used in the Real World</span></a></li></ol></li></ol>
       </div>
     
   </span>
@@ -162,6 +162,172 @@
   <div class="content e-content" itemprop="articleBody">
     <h1 id="What-is-3rd-party-docker-images"><a href="#What-is-3rd-party-docker-images" class="headerlink" title="What is 3rd party docker images?"></a>What is 3rd party docker images?</h1><p>Third-party Docker container images are <code>pre-built</code>, <code>ready-to-use</code> Docker images created by organizations, communities, or individuals outside of Docker Inc. These images are hosted on public container registries like Docker Hub, GitHub Container Registry, or Quay.io, and they provide a convenient way to deploy and use software without having to build it from scratch. Also these images provide ready-to-use software solutions, such as <strong>databases</strong>, <strong>testing environments</strong>, and <strong>CLI utilities</strong>, reducing setup time and ensuring consistency across different environments.</p>
 <h2 id="Benefits-of-using-third-party-docker-images"><a href="#Benefits-of-using-third-party-docker-images" class="headerlink" title="Benefits of using third party docker images"></a>Benefits of using third party docker images</h2><p>✅ Faster Deployment → Preconfigured images save setup time.<br>✅ Consistency → Ensures software runs the same way across different environments.<br>✅ Isolation → Keeps applications and dependencies separate from the host system.<br>✅ Community Support → Many images are well-maintained by active communities or vendors.</p>
+<p>There are different types of third party docker images out there for your needs. We can split up these images into 4 main section;</p>
+<ul>
+<li>General debugging &amp; CLI tools</li>
+<li>Network debugging</li>
+<li>Security &amp; Penetration Testing</li>
+<li>Database Testing</li>
+</ul>
+<p>Many pre-built images are ready for us to address these sections. In below, i’ll give you valuable examples;</p>
+<h2 id="🛠-General-Debugging-CLI-Tools-Also-some-base-images-for-containers"><a href="#🛠-General-Debugging-CLI-Tools-Also-some-base-images-for-containers" class="headerlink" title="🛠 General Debugging &amp; CLI Tools (Also some base images for containers)"></a>🛠 General Debugging &amp; CLI Tools (Also some base images for containers)</h2><table>
+<thead>
+<tr>
+<th>Image</th>
+<th>Description</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>debian</code></strong></td>
+<td>Minimal Debian image for debugging</td>
+<td><code>docker run --rm -it debian bash</code></td>
+</tr>
+<tr>
+<td><strong><code>ubuntu</code></strong></td>
+<td>Ubuntu container with CLI tools</td>
+<td><code>docker run --rm -it ubuntu bash</code></td>
+</tr>
+<tr>
+<td><strong><code>alpine</code></strong></td>
+<td>Lightweight Alpine Linux for quick tests</td>
+<td><code>docker run --rm -it alpine sh</code></td>
+</tr>
+<tr>
+<td><strong><code>bash</code></strong></td>
+<td>Bash shell container for scripting &amp; testing</td>
+<td><code>docker run --rm -it bash</code></td>
+</tr>
+<tr>
+<td><strong><code>busybox</code></strong></td>
+<td>Smallest Linux utilities toolkit</td>
+<td><code>docker run --rm -it busybox sh</code></td>
+</tr>
+</tbody></table>
+<h3 id="🔹-Usage-Examples"><a href="#🔹-Usage-Examples" class="headerlink" title="🔹 Usage Examples"></a>🔹 <strong>Usage Examples</strong></h3><h4 id="🖥️-Debian-Ubuntu-Full-Linux-Shell"><a href="#🖥️-Debian-Ubuntu-Full-Linux-Shell" class="headerlink" title="🖥️ Debian &#x2F; Ubuntu - Full Linux Shell"></a>🖥️ Debian &#x2F; Ubuntu - Full Linux Shell</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> -it debian bash</span><br><span class="line">docker run --<span class="built_in">rm</span> -it ubuntu bash</span><br></pre></td></tr></table></figure>
+<h4 id="📦-Alpine-Lightweight-Linux-Shell"><a href="#📦-Alpine-Lightweight-Linux-Shell" class="headerlink" title="📦 Alpine - Lightweight Linux Shell"></a>📦 Alpine - Lightweight Linux Shell</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> -it alpine sh</span><br></pre></td></tr></table></figure>
+<h4 id="🔄-Standalone-Bash-Shell"><a href="#🔄-Standalone-Bash-Shell" class="headerlink" title="🔄 Standalone Bash Shell"></a>🔄 Standalone Bash Shell</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> -it bash</span><br></pre></td></tr></table></figure>
+<p>Run Bash scripts inside an isolated environment.</p>
+<h2 id="🔥-Security-Penetration-Testing"><a href="#🔥-Security-Penetration-Testing" class="headerlink" title="🔥 Security &amp; Penetration Testing"></a>🔥 Security &amp; Penetration Testing</h2><table>
+<thead>
+<tr>
+<th>Image</th>
+<th>Description</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>kalilinux/kali-rolling</code></strong></td>
+<td>Full Kali Linux security tools</td>
+<td><code>docker run -it kalilinux/kali-rolling /bin/bash</code></td>
+</tr>
+<tr>
+<td><strong><code>owasp/zap2docker-stable</code></strong></td>
+<td>OWASP ZAP for web security testing</td>
+<td><code>docker run -it owasp/zap2docker-stable</code></td>
+</tr>
+<tr>
+<td><strong><code>metasploitframework/metasploit-framework</code></strong></td>
+<td>Metasploit penetration testing framework</td>
+<td><code>docker run -it metasploitframework/metasploit-framework</code></td>
+</tr>
+</tbody></table>
+<h3 id="🔹-Usage-Examples-1"><a href="#🔹-Usage-Examples-1" class="headerlink" title="🔹 Usage Examples"></a>🔹 <strong>Usage Examples</strong></h3><h4 id="🕵️-Kali-Linux-Security-Tools"><a href="#🕵️-Kali-Linux-Security-Tools" class="headerlink" title="🕵️ Kali Linux Security Tools"></a>🕵️ Kali Linux Security Tools</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --<span class="built_in">rm</span> kalilinux/kali-rolling /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="💀-Metasploit-Exploit-Framework"><a href="#💀-Metasploit-Exploit-Framework" class="headerlink" title="💀 Metasploit - Exploit Framework"></a>💀 Metasploit - Exploit Framework</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --<span class="built_in">rm</span> metasploitframework/metasploit-framework</span><br></pre></td></tr></table></figure>
+
+<h2 id="🌐-Network-Debugging-Testing"><a href="#🌐-Network-Debugging-Testing" class="headerlink" title="🌐 Network Debugging &amp; Testing"></a>🌐 Network Debugging &amp; Testing</h2><table>
+<thead>
+<tr>
+<th>Image</th>
+<th>Description</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>nicolaka/netshoot</code></strong></td>
+<td>Network troubleshooting toolkit (tcpdump, dig, curl, etc.)</td>
+<td><code>docker run --rm -it nicolaka/netshoot</code></td>
+</tr>
+<tr>
+<td><strong><code>busybox</code></strong></td>
+<td>Lightweight container with basic networking tools</td>
+<td><code>docker run --rm -it busybox sh</code></td>
+</tr>
+<tr>
+<td><strong><code>tutum/dnsutils</code></strong></td>
+<td>DNS utilities (dig, nslookup)</td>
+<td><code>docker run --rm -it tutum/dnsutils</code></td>
+</tr>
+<tr>
+<td><strong><code>praqma/network-multitool</code></strong></td>
+<td>Multi-networking tools (ping, curl, ip, etc.)</td>
+<td><code>docker run --rm -it praqma/network-multitool</code></td>
+</tr>
+</tbody></table>
+<h3 id="🔹-Usage-Examples-2"><a href="#🔹-Usage-Examples-2" class="headerlink" title="🔹 Usage Examples"></a>🔹 <strong>Usage Examples</strong></h3><h4 id="🛠-Netshoot-Advanced-Network-Debugging"><a href="#🛠-Netshoot-Advanced-Network-Debugging" class="headerlink" title="🛠 Netshoot - Advanced Network Debugging"></a>🛠 Netshoot - Advanced Network Debugging</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> -it --net=host nicolaka/netshoot</span><br></pre></td></tr></table></figure>
+
+<p>In here we are using <code>--net=host</code> because we want to make debugging in host machine and our local network not inside of the docker network.</p>
+<h4 id="📡-BusyBox-Lightweight-Linux-Toolkit"><a href="#📡-BusyBox-Lightweight-Linux-Toolkit" class="headerlink" title="📡 BusyBox - Lightweight Linux Toolkit"></a>📡 BusyBox - Lightweight Linux Toolkit</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> -it busybox sh</span><br></pre></td></tr></table></figure>
+<h4 id="Network-tools"><a href="#Network-tools" class="headerlink" title="Network-tools"></a>Network-tools</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> -it jonlabelle/network-tools sh</span><br></pre></td></tr></table></figure>
+<h4 id="🔍-DNS-Utilities"><a href="#🔍-DNS-Utilities" class="headerlink" title="🔍 DNS Utilities"></a>🔍 DNS Utilities</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> -it tutum/dnsutils dig example.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="🗄️-Databases-Storage"><a href="#🗄️-Databases-Storage" class="headerlink" title="🗄️ Databases &amp; Storage"></a>🗄️ Databases &amp; Storage</h2><table>
+<thead>
+<tr>
+<th>Image</th>
+<th>Description</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>mysql</code></strong></td>
+<td>MySQL database server</td>
+<td><code>docker run --rm -d -e MYSQL_ROOT_PASSWORD=root mysql</code></td>
+</tr>
+<tr>
+<td><strong><code>postgres</code></strong></td>
+<td>PostgreSQL database server</td>
+<td><code>docker run --rm -d -e POSTGRES_PASSWORD=root postgres</code></td>
+</tr>
+<tr>
+<td><strong><code>mongo</code></strong></td>
+<td>MongoDB NoSQL database</td>
+<td><code>docker run --rm -d -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=pass mongo</code></td>
+</tr>
+<tr>
+<td><strong><code>redis</code></strong></td>
+<td>In-memory key-value store</td>
+<td><code>docker run --rm -d redis</code></td>
+</tr>
+<tr>
+<td><strong><code>mariadb</code></strong></td>
+<td>MariaDB (MySQL alternative)</td>
+<td><code>docker run --rm -d -e MYSQL_ROOT_PASSWORD=root mariadb</code></td>
+</tr>
+<tr>
+<td><strong><code>sqlite</code></strong></td>
+<td>Lightweight embedded database</td>
+<td><code>docker run --rm -it alpine sh -c &quot;apk add sqlite &amp;&amp; sqlite3&quot;</code></td>
+</tr>
+</tbody></table>
+<h3 id="🔹-Usage-Examples-3"><a href="#🔹-Usage-Examples-3" class="headerlink" title="🔹 Usage Examples"></a>🔹 <strong>Usage Examples</strong></h3><h4 id="🛠-Running-MySQL"><a href="#🛠-Running-MySQL" class="headerlink" title="🛠 Running MySQL"></a>🛠 Running MySQL</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> -d -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 mysql</span><br></pre></td></tr></table></figure>
+<p>after creation connect using;</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h 127.0.0.1 -u root -p</span><br></pre></td></tr></table></figure>
+
+<h4 id="🛠-Running-PostgreSQL"><a href="#🛠-Running-PostgreSQL" class="headerlink" title="🛠 Running PostgreSQL"></a>🛠 Running PostgreSQL</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> -d -e POSTGRES_PASSWORD=root -p 5432:5432 postgres</span><br></pre></td></tr></table></figure>
+<p>after creation connect using;</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql -h 127.0.0.1 -U postgres</span><br></pre></td></tr></table></figure>
+
+<h4 id="🏗-Running-Redis"><a href="#🏗-Running-Redis" class="headerlink" title="🏗 Running Redis"></a>🏗 Running Redis</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> -d -p 6379:6379 redis</span><br></pre></td></tr></table></figure>
+<p>after creation connect using;</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h 127.0.0.1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>These database containers provide an easy way to test, develop, and debug database-driven applications without setting up full installations!</li>
+</ul>
+<h2 id="Why-Third-Party-Container-Images-Matter-How-They’re-Used-in-the-Real-World"><a href="#Why-Third-Party-Container-Images-Matter-How-They’re-Used-in-the-Real-World" class="headerlink" title="Why Third-Party Container Images Matter &amp; How They’re Used in the Real World"></a>Why Third-Party Container Images Matter &amp; How They’re Used in the Real World</h2><p>Third-party container images play a crucial role in modern development, security, and operations by providing <strong>ready-to-use, pre-configured environments</strong> for a variety of use cases. Instead of spending time installing dependencies, configuring settings, and resolving compatibility issues, engineers can pull a containerized tool and start working immediately. This flexibility improves <strong>efficiency, consistency, and scalability</strong> across different workflows.  </p>
+<p>In real-world scenarios, these containers are invaluable. For example, security professionals use <strong>Kali Linux</strong> or <strong>Metasploit</strong> containers to conduct penetration testing without modifying their local machines. Developers rely on <strong>PostgreSQL, MySQL, or Redis</strong> containers to spin up databases instantly for testing without permanent installations. DevOps teams frequently use lightweight images like <strong>Alpine</strong> or <strong>Ubuntu</strong> for debugging, while networking engineers leverage tools like <strong>Netshoot</strong> to troubleshoot complex network issues inside Kubernetes or cloud environments.  </p>
+<p>By integrating third-party containers into daily workflows, teams can <strong>speed up development, enhance security, and streamline troubleshooting</strong>, all while keeping environments isolated and reproducible. Whether you’re testing APIs, analyzing logs, debugging networks, or running security assessments, <strong>third-party Docker images empower you to work faster and smarter</strong> without unnecessary overhead.<br>ker images empower you to work faster and smarter without unnecessary overhead.</p>
 
   </div>
 </article>
@@ -189,7 +355,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-3rd-party-docker-images"><span class="toc-number">1.</span> <span class="toc-text">What is 3rd party docker images?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Benefits-of-using-third-party-docker-images"><span class="toc-number">1.1.</span> <span class="toc-text">Benefits of using third party docker images</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-3rd-party-docker-images"><span class="toc-number">1.</span> <span class="toc-text">What is 3rd party docker images?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Benefits-of-using-third-party-docker-images"><span class="toc-number">1.1.</span> <span class="toc-text">Benefits of using third party docker images</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9B%A0-General-Debugging-CLI-Tools-Also-some-base-images-for-containers"><span class="toc-number">1.2.</span> <span class="toc-text">🛠 General Debugging &amp; CLI Tools (Also some base images for containers)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B9-Usage-Examples"><span class="toc-number">1.2.1.</span> <span class="toc-text">🔹 Usage Examples</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%96%A5%EF%B8%8F-Debian-Ubuntu-Full-Linux-Shell"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">🖥️ Debian &#x2F; Ubuntu - Full Linux Shell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%93%A6-Alpine-Lightweight-Linux-Shell"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">📦 Alpine - Lightweight Linux Shell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%94%84-Standalone-Bash-Shell"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">🔄 Standalone Bash Shell</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A5-Security-Penetration-Testing"><span class="toc-number">1.3.</span> <span class="toc-text">🔥 Security &amp; Penetration Testing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B9-Usage-Examples-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">🔹 Usage Examples</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%95%B5%EF%B8%8F-Kali-Linux-Security-Tools"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">🕵️ Kali Linux Security Tools</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%92%80-Metasploit-Exploit-Framework"><span class="toc-number">1.3.2.</span> <span class="toc-text">💀 Metasploit - Exploit Framework</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8C%90-Network-Debugging-Testing"><span class="toc-number">1.4.</span> <span class="toc-text">🌐 Network Debugging &amp; Testing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B9-Usage-Examples-2"><span class="toc-number">1.4.1.</span> <span class="toc-text">🔹 Usage Examples</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9B%A0-Netshoot-Advanced-Network-Debugging"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">🛠 Netshoot - Advanced Network Debugging</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%93%A1-BusyBox-Lightweight-Linux-Toolkit"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">📡 BusyBox - Lightweight Linux Toolkit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Network-tools"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">Network-tools</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%94%8D-DNS-Utilities"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">🔍 DNS Utilities</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%97%84%EF%B8%8F-Databases-Storage"><span class="toc-number">1.5.</span> <span class="toc-text">🗄️ Databases &amp; Storage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B9-Usage-Examples-3"><span class="toc-number">1.5.1.</span> <span class="toc-text">🔹 Usage Examples</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9B%A0-Running-MySQL"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">🛠 Running MySQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9B%A0-Running-PostgreSQL"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">🛠 Running PostgreSQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%8F%97-Running-Redis"><span class="toc-number">1.5.1.3.</span> <span class="toc-text">🏗 Running Redis</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-Third-Party-Container-Images-Matter-How-They%E2%80%99re-Used-in-the-Real-World"><span class="toc-number">1.6.</span> <span class="toc-text">Why Third-Party Container Images Matter &amp; How They’re Used in the Real World</span></a></li></ol></li></ol>
       </div>
     
 
