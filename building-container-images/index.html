@@ -14,7 +14,7 @@
 <meta property="og:description" content="What is container?A container image is a lightweight, standalone, and executable package that includes everything needed to run a piece of software, including the code, runtime, libraries, and depende">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-15T12:39:12.000Z">
-<meta property="article:modified_time" content="2025-03-13T12:06:53.876Z">
+<meta property="article:modified_time" content="2025-03-13T12:08:35.940Z">
 <meta property="article:author" content="11E48B5">
 <meta property="article:tag" content="devops">
 <meta property="article:tag" content="docker">
@@ -173,31 +173,36 @@
 <li>Every Docker image must start with a FROM instruction (except for “scratch” base images).</li>
 </ul>
 <ol start="2">
-<li><p>Set Working Directory (WORKDIR)</p>
+<li>Set Working Directory (WORKDIR)</li>
+</ol>
 <ul>
 <li>Sets &#x2F;app as the working directory inside the container.</li>
 <li>All subsequent commands (COPY, RUN, etc.) will be executed relative to this directory.</li>
 </ul>
-</li>
-<li><p>Copy Application Files (COPY)</p>
+<ol start="3">
+<li>Copy Application Files (COPY)</li>
+</ol>
 <ul>
 <li>Copies all files from the local build directory (the folder containing the Dockerfile) to the &#x2F;app directory inside the container.</li>
 <li>This allows the container to have access to all necessary application files.</li>
 </ul>
-</li>
-<li><p>Execute Some Commands (RUN)</p>
+<ol start="4">
+<li>Execute Some Commands (RUN)</li>
+</ol>
 <ul>
 <li>Added newuser called jack using Unix CLI tool useradd.</li>
 <li>After RUN keyword, you can write bash commands if base image supports it.</li>
 </ul>
-</li>
-<li><p>Change Default User (USER)</p>
+<ol start="5">
+<li>Change Default User (USER)</li>
+</ol>
 <ul>
 <li>This instruction sets the default user for all subsequent instructions.</li>
 <li>Container shouldn’t run as the root user</li>
 </ul>
-</li>
-<li><p>Define Default Command (CMD)</p>
+<ol start="6">
+<li>Define Default Command (CMD)</li>
+</ol>
 <ul>
 <li>The CMD instruction specifies the default command to run the container.</li>
 <li>Here, it starts the Python application by running <code>python main.py</code></li>
@@ -208,8 +213,6 @@
 </li>
 <li>If a user overrides <code>CMD</code> while running the container (e.g., docker run my-app bash), Docker will <code>execute the specified command instead of CMD</code>.</li>
 </ul>
-</li>
-</ol>
 
   </div>
 </article>
