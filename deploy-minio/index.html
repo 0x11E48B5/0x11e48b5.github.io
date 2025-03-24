@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://0x11e48b5.github.io/deploy-minio/block-order.jpg">
 <meta property="article:published_time" content="2025-03-24T13:30:10.000Z">
-<meta property="article:modified_time" content="2025-03-24T09:14:24.447Z">
+<meta property="article:modified_time" content="2025-03-24T10:53:00.209Z">
 <meta property="article:author" content="11E48B5">
 <meta property="article:tag" content="devops">
 <meta property="article:tag" content="minio">
@@ -118,7 +118,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-MinIO"><span class="toc-number">1.</span> <span class="toc-text">What is MinIO?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Object-Storage"><span class="toc-number">1.1.</span> <span class="toc-text">What is Object Storage</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-MinIO"><span class="toc-number">1.</span> <span class="toc-text">What is MinIO?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Object-Storage"><span class="toc-number">1.1.</span> <span class="toc-text">What is Object Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MinIO-Deployment-Types"><span class="toc-number">1.2.</span> <span class="toc-text">MinIO Deployment Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#General-Prerequisites-for-Better-Performance"><span class="toc-number">1.2.1.</span> <span class="toc-text">General Prerequisites for Better Performance</span></a></li></ol></li></ol></li></ol>
       </div>
     
   </span>
@@ -169,6 +169,40 @@
 <h2 id="What-is-Object-Storage"><a href="#What-is-Object-Storage" class="headerlink" title="What is Object Storage"></a>What is Object Storage</h2><p>Object storage is a data storage architecture that manages data as objects rather than as files (file storage) or blocks (block storage). It is designed for scalability, durability, and easy retrieval, making it ideal for storing large amounts of unstructured data like images, videos, backups, logs, and analytics data.</p>
 <p>The concept of object storage is similar to that of a standard Unix file system, but instead of directories and files, we use buckets and objects. In traditional file system, you can think <code>directories as buckets</code> and <code>files</code> inside of those directories <code>as objects.</code></p>
 <img src="/deploy-minio/block-order.jpg" class="">
+
+<h2 id="MinIO-Deployment-Types"><a href="#MinIO-Deployment-Types" class="headerlink" title="MinIO Deployment Types"></a>MinIO Deployment Types</h2><p>There are 3 types of deployment types available for MinIO;</p>
+<ul>
+<li><strong>Single Node Single Drive (SNSD)</strong><ul>
+<li>SNSD deployments use a zero-parity erasure coded backend that provides no added reliability or availability beyond what the underlying storage volume implements. These deployments are best suited for local testing and evaluation, or for small-scale data workloads that do not have availability or performance requirements.</li>
+</ul>
+</li>
+<li><strong>Single Node Multi Drive (SNMD)</strong><ul>
+<li>SNMD deployments provide drive-level reliability and failover&#x2F;recovery with performance and scaling limitations imposed by the single node.</li>
+</ul>
+</li>
+<li><strong>Multi Node Multi Drive (MNMD) - For Production</strong><ul>
+<li>MNMD deployments support erasure coding configurations which tolerate the loss of up to half the nodes or drives in the deployment while continuing to serve read operations. Use the MinIO Erasure Code Calculator when planning and designing your MinIO deployment to explore the effect of erasure code settings on your intended topology.</li>
+</ul>
+</li>
+</ul>
+<h3 id="General-Prerequisites-for-Better-Performance"><a href="#General-Prerequisites-for-Better-Performance" class="headerlink" title="General Prerequisites for Better Performance"></a>General Prerequisites for Better Performance</h3><ol>
+<li><strong>Use Local Storage</strong><ul>
+<li>Direct-Attached Storage (DAS) has significant performance and consistency advantages over networked storage (NAS, SAN, NFS). MinIO strongly recommends flash storage (NVMe, SSD) for primary or “hot” data.</li>
+</ul>
+</li>
+<li><strong>Use XFS-Formatting for Drives</strong><ul>
+<li>MinIO strongly recommends provisioning XFS formatted drives for storage. MinIO uses XFS as part of internal testing and validation suites, providing additional confidence in performance and behavior at all scales. MinIO does not test nor recommend any other filesystem, such as EXT4, BTRFS, or ZFS.</li>
+</ul>
+</li>
+<li><strong>Use Consistent Type of Drive</strong><ul>
+<li>MinIO does not distinguish drive types and does not benefit from mixed storage types. Each pool must use the same type (NVMe, SSD). For example, deploy a pool consisting of only NVMe drives. If you deploy some drives as SSD or HDD, MinIO treats those drives identically to the NVMe drives. This can result in performance issues, as some drives have differing or worse read&#x2F;write characteristics and cannot respond at the same rate as the NVMe drives.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>MinIO recommends a minimum of 32GiB of memory per host. See Memory for more guidance on memory allocation in MinIO.</p>
+</blockquote>
+
   </div>
 </article>
 
@@ -195,7 +229,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-MinIO"><span class="toc-number">1.</span> <span class="toc-text">What is MinIO?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Object-Storage"><span class="toc-number">1.1.</span> <span class="toc-text">What is Object Storage</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-MinIO"><span class="toc-number">1.</span> <span class="toc-text">What is MinIO?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Object-Storage"><span class="toc-number">1.1.</span> <span class="toc-text">What is Object Storage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MinIO-Deployment-Types"><span class="toc-number">1.2.</span> <span class="toc-text">MinIO Deployment Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#General-Prerequisites-for-Better-Performance"><span class="toc-number">1.2.1.</span> <span class="toc-text">General Prerequisites for Better Performance</span></a></li></ol></li></ol></li></ol>
       </div>
     
 
