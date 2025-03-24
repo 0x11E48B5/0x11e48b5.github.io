@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Computer Science Focusing On Cyber Security
+title: Cyber Security with R&D perspective
 subtitle: ''
-description: ''
+description: 'Hello, and welcome to 0x11e48b5 blog page! I’m 0x11e48b5, a tech enthusiast who is passionate about docker, k8s, k3s, cyber threat intelligence, threat hunting and cyber security topics related to blue side. I’ll be posting valuable articles on this site on ideas I’ve encountered.'
 keywords:
 author: 11E48B5
 language: en
@@ -14,7 +14,7 @@ timezone: ''
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://0x11E48B5.github.io
-permalink: :year/:month/:day/:title/
+permalink: :title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -40,7 +40,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 syntax_highlighter: highlight.js
@@ -101,4 +101,6 @@ theme: cactus
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: 'git'
+  repo: git@github.com:0x11E48B5/0x11e48b5.github.io.git
+  branch: gh-pages
