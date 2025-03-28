@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="What is Elasticsearch?Elasticsearch is a distributed search and analytics engine built on Apache Lucene. It is designed for scalability, speed, and full-text search, making it widely used for log anal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deploy Elasticsearch &amp; Kibana Using Docker">
+<meta property="og:url" content="https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/index.html">
+<meta property="og:site_name" content="Cyber Security with R&amp;D perspective">
+<meta property="og:description" content="What is Elasticsearch?Elasticsearch is a distributed search and analytics engine built on Apache Lucene. It is designed for scalability, speed, and full-text search, making it widely used for log anal">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-03-28T13:30:10.000Z">
+<meta property="article:modified_time" content="2025-03-28T12:27:37.814Z">
+<meta property="article:author" content="11E48B5">
+<meta property="article:tag" content="devops">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="elasticsearch">
+<meta property="article:tag" content="kibana">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Deploy Elasticsearch &amp; Kibana Using Docker</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/deploy-minio/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&text=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&title=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&is_video=false&description=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Deploy Elasticsearch &amp; Kibana Using Docker&body=Check out this article: https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&title=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&title=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&title=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&title=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&name=Deploy Elasticsearch &amp; Kibana Using Docker&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&t=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-Elasticsearch"><span class="toc-number">1.</span> <span class="toc-text">What is Elasticsearch?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-Elasticsearch-Using-Docker"><span class="toc-number">1.1.</span> <span class="toc-text">Install Elasticsearch Using Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-Kibana-and-Enroll-the-Elasticsearch"><span class="toc-number">1.2.</span> <span class="toc-text">Install Kibana and Enroll the Elasticsearch</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Deploy Elasticsearch &amp; Kibana Using Docker
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">11E48B5</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-03-28T13:30:10.000Z" class="dt-published" itemprop="datePublished">2025-03-28</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/devops/" rel="tag">devops</a>, <a class="p-category" href="/tags/docker/" rel="tag">docker</a>, <a class="p-category" href="/tags/elasticsearch/" rel="tag">elasticsearch</a>, <a class="p-category" href="/tags/kibana/" rel="tag">kibana</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="What-is-Elasticsearch"><a href="#What-is-Elasticsearch" class="headerlink" title="What is Elasticsearch?"></a>What is Elasticsearch?</h1><p>Elasticsearch is a distributed search and analytics engine built on Apache Lucene. It is designed for scalability, speed, and full-text search, making it widely used for log analysis, real-time monitoring, business intelligence, and security analytics. Here is the key features of elasticsearch.</p>
+<ul>
+<li><strong>Full-Text Search</strong> – Powerful text search capabilities with relevance ranking.</li>
+<li><strong>Scalability</strong> – Can handle massive amounts of data by distributing workloads across multiple nodes.</li>
+<li><strong>Near Real-Time Search</strong> – Indexes and retrieves data almost instantly.</li>
+<li><strong>RESTful API</strong> – Allows easy integration with various applications.</li>
+<li><strong>Schema-Free JSON Storage</strong> – Accepts semi-structured JSON data without requiring predefined schemas.</li>
+<li><strong>Aggregation Framework</strong> – Enables advanced data analysis (e.g., trends, statistics).</li>
+<li><strong>Elasticsearch Query DSL</strong> – A flexible and powerful query language for retrieving data.</li>
+</ul>
+<p>In this tutorial, we will deploy single-node elasticsearch and kibana in ubuntu. To create a multi-node cluster with kibana, you should use docker compose instead. See <a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-compose-file">multi-node cluster using docker compose</a></p>
+<h2 id="Install-Elasticsearch-Using-Docker"><a href="#Install-Elasticsearch-Using-Docker" class="headerlink" title="Install Elasticsearch Using Docker"></a>Install Elasticsearch Using Docker</h2><p>I assume that you already installed docker engine to your host. Firstly we need to create network for our minimal deployment.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create elastic</span><br></pre></td></tr></table></figure>
+
+<p>Pull Elasticsearch Image</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull docker.elastic.co/elasticsearch/elasticsearch:8.17.4</span><br></pre></td></tr></table></figure>
+<p>Create data path in your host to mount.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /mnt/elasticsearch/data</span><br><span class="line"><span class="built_in">chown</span> -R &lt;current_user&gt;:&lt;current_user&gt; /mnt/elasticsearch/data</span><br></pre></td></tr></table></figure>
+
+<p>Run this command to deploy elasticsearch.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name es01 --net elastic --ip 172.18.0.2 -p 9200:9200 -it -m 16GB -v /mnt/elasticsearch/data:/usr/share/elasticsearch/data -e <span class="string">&quot;bootstrap.memory_lock=true&quot;</span> --<span class="built_in">ulimit</span> memlock=-1:-1 --restart=always docker.elastic.co/elasticsearch/elasticsearch:8.17.3</span><br></pre></td></tr></table></figure>
+<p>Let’s try to explain all arguments in that command.</p>
+<ul>
+<li>Firstly the <code>-d</code> parameter is (detached mode) that runs the container in the background.</li>
+<li><code>--name es01</code> parameter assigns a <strong>name</strong> (<code>es01</code>) to the container for easy reference.</li>
+<li><code>--net elastic</code> specifies a <strong>custom Docker network</strong> named <code>elastic</code> for communication with other services (e.g., Kibana). </li>
+<li><code>--ip 172.18.0.2</code> assigns a <strong>static IP</strong> (<code>172.18.0.2</code>) within the <code>elastic</code> network. We should assign this ip adress for this deployment type because while installing kibana you will see, the kibana yaml looks this ip address for elasticsearch in default. If kibana don’t find elasticsearch in that ip address within the network, it crashes.</li>
+<li><code>-p 9200:9200</code> maps <strong>port 9200</strong> of the container (Elasticsearch’s default HTTP port) to <strong>port 9200</strong> on the host machine.</li>
+<li><code>-m 16GB</code> limits the container’s <strong>memory usage</strong> to <strong>16GB</strong>, preventing excessive memory consumption.</li>
+<li><code>-v /mnt/elasticsearch/data:/usr/share/elasticsearch/data</code> mounts a <strong>persistent volume</strong>:<ul>
+<li><strong>Host directory</strong>: <code>/mnt/elasticsearch/data</code></li>
+<li><strong>Container directory</strong>: <code>/usr/share/elasticsearch/data</code><br>Ensures Elasticsearch <strong>data is retained</strong> even if the container is removed.</li>
+</ul>
+</li>
+<li><code>-e &quot;bootstrap.memory_lock=true&quot;</code> enables <strong>memory locking</strong> to prevent Elasticsearch from swapping memory to disk.</li>
+<li><code>--ulimit memlock=-1:-1</code> grants <strong>unlimited memory lock permissions</strong> to support <code>bootstrap.memory_lock=true</code>.</li>
+<li><code>--restart=always</code> ensures the container <strong>automatically restarts</strong> if it crashes or if the host machine reboots.</li>
+</ul>
+<p>After runnign the command, you can check the logs using <code>docker logs -f es01</code>. When installation process was fineshed, there will be outputs on your shell taht shows <code>enrollment-token</code>, <code>elastic user password</code> we must note that values for using in the future.</p>
+<h2 id="Install-Kibana-and-Enroll-the-Elasticsearch"><a href="#Install-Kibana-and-Enroll-the-Elasticsearch" class="headerlink" title="Install Kibana and Enroll the Elasticsearch"></a>Install Kibana and Enroll the Elasticsearch</h2>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-Elasticsearch"><span class="toc-number">1.</span> <span class="toc-text">What is Elasticsearch?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-Elasticsearch-Using-Docker"><span class="toc-number">1.1.</span> <span class="toc-text">Install Elasticsearch Using Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-Kibana-and-Enroll-the-Elasticsearch"><span class="toc-number">1.2.</span> <span class="toc-text">Install Kibana and Enroll the Elasticsearch</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&text=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&title=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&is_video=false&description=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Deploy Elasticsearch &amp; Kibana Using Docker&body=Check out this article: https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&title=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&title=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&title=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&title=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&name=Deploy Elasticsearch &amp; Kibana Using Docker&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://0x11e48b5.github.io/elasticsearch-docker-install-with-kibana/&t=Deploy Elasticsearch &amp; Kibana Using Docker"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    11E48B5
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
