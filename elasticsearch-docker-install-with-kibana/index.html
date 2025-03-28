@@ -14,7 +14,7 @@
 <meta property="og:description" content="What is Elasticsearch?Elasticsearch is a distributed search and analytics engine built on Apache Lucene. It is designed for scalability, speed, and full-text search, making it widely used for log anal">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-28T13:30:10.000Z">
-<meta property="article:modified_time" content="2025-03-28T12:27:37.814Z">
+<meta property="article:modified_time" content="2025-03-28T12:45:32.317Z">
 <meta property="article:author" content="11E48B5">
 <meta property="article:tag" content="devops">
 <meta property="article:tag" content="docker">
@@ -200,7 +200,19 @@
 <li><code>--restart=always</code> ensures the container <strong>automatically restarts</strong> if it crashes or if the host machine reboots.</li>
 </ul>
 <p>After runnign the command, you can check the logs using <code>docker logs -f es01</code>. When installation process was fineshed, there will be outputs on your shell taht shows <code>enrollment-token</code>, <code>elastic user password</code> we must note that values for using in the future.</p>
-<h2 id="Install-Kibana-and-Enroll-the-Elasticsearch"><a href="#Install-Kibana-and-Enroll-the-Elasticsearch" class="headerlink" title="Install Kibana and Enroll the Elasticsearch"></a>Install Kibana and Enroll the Elasticsearch</h2>
+<h2 id="Install-Kibana-and-Enroll-the-Elasticsearch"><a href="#Install-Kibana-and-Enroll-the-Elasticsearch" class="headerlink" title="Install Kibana and Enroll the Elasticsearch"></a>Install Kibana and Enroll the Elasticsearch</h2><p>In order to visualize our data, we need to install kibana for it. In the next section of our blog post, we will install kibana with docker and connect it to the elasticsearch container.</p>
+<p>Pull Kibana Image</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull docker.elastic.co/kibana/kibana:8.17.4</span><br></pre></td></tr></table></figure>
+<p>Run this command to deploy kibana.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name kib01 --net elastic --ip 172.18.0.3 -p 5601:5601 --restart=always docker.elastic.co/kibana/kibana:8.17.3</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>You must define ip address different from elasticsearch ip address.</p>
+</blockquote>
+<p>After some amount of time, you can visit kibana web page in <code>http://&lt;docker_node_local_ip&gt;:5061</code> that address.<br>If your enrollment token was expired, regenerate using that command;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it es01 /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana</span><br></pre></td></tr></table></figure>
+
+<p>If you don’t remember your password, you can regenerate using that command;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it es01 /usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic</span><br></pre></td></tr></table></figure>
   </div>
 </article>
 
