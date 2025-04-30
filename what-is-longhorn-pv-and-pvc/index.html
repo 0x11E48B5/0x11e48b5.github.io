@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="What is Longhorn?Longhorn is a cloud-native distributed block storage system for Kubernetes. It was developed by Rancher Labs and is now a CNCF project. Longhorn enables highly available, persistent s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Longhorn, local storage for your kubernetes cluster">
+<meta property="og:url" content="https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/index.html">
+<meta property="og:site_name" content="Cyber Security with R&amp;D perspective">
+<meta property="og:description" content="What is Longhorn?Longhorn is a cloud-native distributed block storage system for Kubernetes. It was developed by Rancher Labs and is now a CNCF project. Longhorn enables highly available, persistent s">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/longhorn-architecture.png">
+<meta property="article:published_time" content="2025-04-30T12:40:00.000Z">
+<meta property="article:modified_time" content="2025-04-30T11:46:22.313Z">
+<meta property="article:author" content="11E48B5">
+<meta property="article:tag" content="devops">
+<meta property="article:tag" content="kubernetes">
+<meta property="article:tag" content="longhorn">
+<meta property="article:tag" content="pvc">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/longhorn-architecture.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Longhorn, local storage for your kubernetes cluster</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/elasticsearch-docker-install-with-kibana/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&text=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&title=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&is_video=false&description=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Longhorn, local storage for your kubernetes cluster&body=Check out this article: https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&title=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&title=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&title=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&title=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&name=Longhorn, local storage for your kubernetes cluster&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&t=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-Longhorn"><span class="toc-number">1.</span> <span class="toc-text">What is Longhorn?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-it-works"><span class="toc-number">1.1.</span> <span class="toc-text">How it works?</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Longhorn, local storage for your kubernetes cluster
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">11E48B5</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-04-30T12:40:00.000Z" class="dt-published" itemprop="datePublished">2025-04-30</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/devops/" rel="tag">devops</a>, <a class="p-category" href="/tags/kubernetes/" rel="tag">kubernetes</a>, <a class="p-category" href="/tags/longhorn/" rel="tag">longhorn</a>, <a class="p-category" href="/tags/pvc/" rel="tag">pvc</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="What-is-Longhorn"><a href="#What-is-Longhorn" class="headerlink" title="What is Longhorn?"></a>What is Longhorn?</h1><p>Longhorn is a cloud-native distributed <strong>block storage system</strong> for Kubernetes. It was developed by Rancher Labs and is now a CNCF project. Longhorn enables highly available, persistent storage for your Kubernetes workloads using containers and microservices. Here is the key features of Longhorn;</p>
+<ul>
+<li>Distributed Block Storage: It turns the local disks of your Kubernetes nodes into distributed storage volumes.</li>
+<li>Highly Available Volumes: Each volume can be replicated across multiple nodes for fault tolerance.</li>
+<li>Snapshots and Backups: Supports volume snapshots and backup&#x2F;restore, including backup to external S3-compatible object storage (e.g., MinIO).</li>
+<li>Lightweight and Easy to Use: Designed to be simple to deploy and operate.</li>
+<li>GUI and CLI Management: Offers both a web UI and kubectl integration.</li>
+<li>Disaster Recovery (DR) Volumes: Supports DR volumes in different clusters or regions.</li>
+</ul>
+<p>Longhorn <code>uses replication</code> to make copies of data to ensure <strong>high availability</strong> and <strong>data redundancy</strong>. When a Longhorn volume is created, the user specifies the number of replicas that should be created for the volume. Each replica is a complete copy of the volume data and is stored on a different physical disk on a different node within the Kubernetes cluster.</p>
+<h2 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works?"></a>How it works?</h2><ol>
+<li><strong>Longhorn Manager</strong> runs as a Kubernetes deployment and orchestrates volume creation, scheduling, and replication.</li>
+<li><strong>Longhorn Engine</strong> runs per volume and performs actual block storage read&#x2F;write operations.</li>
+<li><strong>Storage</strong> is replicated across multiple nodes for redundancy.</li>
+</ol>
+<p>The picture in the below shows architecture of Longhorn</p>
+<img src="/what-is-longhorn-pv-and-pvc/longhorn-architecture.png" class="">
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-Longhorn"><span class="toc-number">1.</span> <span class="toc-text">What is Longhorn?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-it-works"><span class="toc-number">1.1.</span> <span class="toc-text">How it works?</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&text=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&title=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&is_video=false&description=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Longhorn, local storage for your kubernetes cluster&body=Check out this article: https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&title=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&title=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&title=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&title=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&name=Longhorn, local storage for your kubernetes cluster&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/&t=Longhorn, local storage for your kubernetes cluster"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    11E48B5
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
