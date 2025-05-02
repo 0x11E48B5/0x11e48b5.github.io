@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://0x11e48b5.github.io/what-is-longhorn-pv-and-pvc/longhorn-architecture.png">
 <meta property="article:published_time" content="2025-04-30T12:40:00.000Z">
-<meta property="article:modified_time" content="2025-04-30T13:44:35.119Z">
+<meta property="article:modified_time" content="2025-05-02T08:30:19.182Z">
 <meta property="article:author" content="11E48B5">
 <meta property="article:tag" content="devops">
 <meta property="article:tag" content="kubernetes">
@@ -118,7 +118,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-Longhorn"><span class="toc-number">1.</span> <span class="toc-text">What is Longhorn?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-it-works"><span class="toc-number">1.1.</span> <span class="toc-text">How it works?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-install-Longhorn"><span class="toc-number">1.2.</span> <span class="toc-text">How to install Longhorn?</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-Longhorn"><span class="toc-number">1.</span> <span class="toc-text">What is Longhorn?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-it-works"><span class="toc-number">1.1.</span> <span class="toc-text">How it works?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-install-Longhorn"><span class="toc-number">1.2.</span> <span class="toc-text">How to install Longhorn?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PV-and-PVC-Usage-Example"><span class="toc-number">1.3.</span> <span class="toc-text">PV and PVC Usage Example</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-PV-and-PVC"><span class="toc-number">1.3.1.</span> <span class="toc-text">What is PV and PVC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-number">1.3.2.</span> <span class="toc-text">Example</span></a></li></ol></li></ol></li></ol>
       </div>
     
   </span>
@@ -197,6 +197,22 @@
 
 <p>Install it;</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm install longhorn longhorn/longhorn --namespace longhorn-system</span><br></pre></td></tr></table></figure>
+
+<p>After installing longhorn, you can use your nodes disc capacity as storage for your k8s cluster. Let’s learn how to use it.</p>
+<h2 id="PV-and-PVC-Usage-Example"><a href="#PV-and-PVC-Usage-Example" class="headerlink" title="PV and PVC Usage Example"></a>PV and PVC Usage Example</h2><h3 id="What-is-PV-and-PVC"><a href="#What-is-PV-and-PVC" class="headerlink" title="What is PV and PVC"></a>What is PV and PVC</h3><p>A Kubernetes persistent volume (PV) is an object that allows pods to access persistent storage on a storage device, defined via a Kubernetes StorageClass. Unlike regular volumes, which are transient in nature, PVs are persistent, supporting stateful application use cases. A PV is a resource object in a Kubernetes cluster which continues to exist even after the pods using it have been destroyed.</p>
+<p>PVs must be requested through persistent volume claims (PVCs), which are requests for storage. A PVC is essentially a request to mount a PV meeting certain requirements on a pod. PVCs do not specify a specific PV—instead, they specify which StorageClass the pod requires. Administrators can define StorageClasses that indicate properties of storage devices, such as performance, service levels, and back-end policies.</p>
+<p>A major advantage of the PVC pattern in Kubernetes is that it allows developers to dynamically request storage resources, without being aware of the implementation of underlying storage devices.</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>Longhorn creates storageclass named Longhorn during installation. You can check it by typing <code>kubectl get storageclass</code>. </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NAME                 PROVISIONER          RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE</span><br><span class="line">longhorn (default)   driver.longhorn.io   Delete          Immediate           <span class="literal">true</span>                   11d</span><br><span class="line">longhorn-static      driver.longhorn.io   Delete          Immediate           <span class="literal">true</span>                   11d</span><br></pre></td></tr></table></figure>
+
+<p>You’ll see output like this. Meaning of this output is that we can use longhorn storage class in our PVC (Persistent Volume Claim). Here is the example of creating PVC yaml;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: PersistentVolumeClaim</span><br><span class="line">metadata:</span><br><span class="line">  name: longhorn-pvc</span><br><span class="line">spec:</span><br><span class="line">  storageClassName: longhorn  <span class="comment"># Or use &quot;longhorn-custom&quot; if you created one</span></span><br><span class="line">  accessModes:</span><br><span class="line">    - ReadWriteOnce  <span class="comment"># Supported: ReadWriteOnce, ReadWriteMany (with RWX volume)</span></span><br><span class="line">  resources:</span><br><span class="line">    requests:</span><br><span class="line">      storage: 5Gi  <span class="comment"># Size of the volume</span></span><br></pre></td></tr></table></figure>
+
+<p>Here is the nginx deployment yaml which will use that 5Gi as storage by mounting it.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: nginx-with-longhorn</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  - name: nginx</span><br><span class="line">    image: nginx:latest</span><br><span class="line">    volumeMounts:</span><br><span class="line">    - name: longhorn-vol</span><br><span class="line">      mountPath: /usr/share/nginx/html  <span class="comment"># Mount point inside the pod</span></span><br><span class="line">  volumes:</span><br><span class="line">  - name: longhorn-vol</span><br><span class="line">    persistentVolumeClaim:</span><br><span class="line">      claimName: longhorn-pvc  <span class="comment"># Must match the PVC name</span></span><br></pre></td></tr></table></figure>
+
+<p>We end up out tutorial with this example. See you in the next blog.</p>
+
   </div>
 </article>
 
@@ -223,7 +239,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-Longhorn"><span class="toc-number">1.</span> <span class="toc-text">What is Longhorn?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-it-works"><span class="toc-number">1.1.</span> <span class="toc-text">How it works?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-install-Longhorn"><span class="toc-number">1.2.</span> <span class="toc-text">How to install Longhorn?</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-Longhorn"><span class="toc-number">1.</span> <span class="toc-text">What is Longhorn?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-it-works"><span class="toc-number">1.1.</span> <span class="toc-text">How it works?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-install-Longhorn"><span class="toc-number">1.2.</span> <span class="toc-text">How to install Longhorn?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PV-and-PVC-Usage-Example"><span class="toc-number">1.3.</span> <span class="toc-text">PV and PVC Usage Example</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-PV-and-PVC"><span class="toc-number">1.3.1.</span> <span class="toc-text">What is PV and PVC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-number">1.3.2.</span> <span class="toc-text">Example</span></a></li></ol></li></ol></li></ol>
       </div>
     
 
